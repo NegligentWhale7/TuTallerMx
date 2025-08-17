@@ -1,4 +1,4 @@
-package com.tutallermx;
+package com.tutallermx.backend.tutallermxback;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,14 +33,13 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
-        vehicle.setStatus("available");
-        vehicle.setServices("j");
 
         Set<ConstraintViolation<Vehicle>> violations = validator.validate(vehicle);
                 System.out.println("vehicle empty violations: " + violations.size());
         assertTrue(violations.isEmpty(), "Should not be empty");
+        
     }
 
     @Test
@@ -51,7 +50,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
@@ -69,7 +68,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
@@ -87,7 +86,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
@@ -105,7 +104,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
@@ -123,7 +122,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
@@ -141,7 +140,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
@@ -159,7 +158,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
@@ -177,8 +176,8 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
-        vehicle.setVin("1HGBH41JXMN109186");
+        vehicle.setCarYear(2020L);
+        vehicle.setVin("JH4TB2H26CC000000");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
 
@@ -195,7 +194,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
@@ -213,7 +212,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");
@@ -231,7 +230,7 @@ public class VehicleValidationTest
         vehicle.setPhone(1234567890L);
         vehicle.setMake("Toyota");
         vehicle.setModel("Camry");
-        vehicle.setYear(2020L);
+        vehicle.setCarYear(2020L);
         vehicle.setVin("1HGBH41JXMN109186");
         vehicle.setStatus("available");
         vehicle.setServices("oil change");

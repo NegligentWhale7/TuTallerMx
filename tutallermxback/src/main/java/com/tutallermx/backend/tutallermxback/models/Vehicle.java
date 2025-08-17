@@ -13,8 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "vehicle")
-public class Vehicle 
-{
+public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,15 +36,13 @@ public class Vehicle
     @DecimalMin(value = "1990", message = "Year must be greater than or equal to 1990")
     @DecimalMax(value = "2025", message = "Year must be less than or equal to 2025")
     @Positive(message = "Year must be positive")
-    private Long year;
+    private Long carYear;
     @NotBlank(message = "VIN is mandatory")
     @Size(min = 17, max = 17, message = "VIN must be exactly 17 characters")
-    @Pattern(regexp = "(?i)^(?:(?![×Þß÷þø])[-'0-9a-zÀ-ÿ\\s])+$", message = "VIN must not contain special characters")
+    @Pattern(regexp = "^[A-HJ-NPR-Z0-9]{17}$", message = "VIN must contain only valid characters (no I, O, Q)")
     private String vin;
-    @NotBlank(message = "Status is mandatory")
     @Pattern(regexp = "(?i)^(?:(?![×Þß÷þø])[-'0-9a-zÀ-ÿ\\s])+$", message = "Status must not contain special characters")
-    private String status;
-    @NotBlank(message = "Services are mandatory")
+    private String status = "unassigned";
     @Pattern(regexp = "(?i)^(?:(?![×Þß÷þø])[-'0-9a-zÀ-ÿ\\s])+$", message = "Services must not contain special characters")
-    private String services;
+    private String services = "unassigned";
 }
