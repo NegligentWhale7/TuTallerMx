@@ -37,7 +37,7 @@ public class VehicleValidationTest
         vehicle.setVin("1HGBH41JXMN109186");
 
         Set<ConstraintViolation<Vehicle>> violations = validator.validate(vehicle);
-                System.out.println("vehicle empty violations: " + violations.size());
+        System.out.println("vehicle empty violations: " + violations.size() + " " + violations);
         assertTrue(violations.isEmpty(), "Should not be empty");
         
     }
