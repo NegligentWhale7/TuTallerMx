@@ -112,3 +112,91 @@ select{
     border: none;
     margin-right: 1rem;
 }
+
+#modalForm{
+  border-radius: 15px;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: rgb(0, 1, 16);
+  box-shadow: 0 0 1.5rem rgb(77, 234, 255);
+  border: .1rem solid rgba(218, 231, 242, 0.5);
+  color: rgb(207, 214, 237);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 500px;
+  max-width: 500px;
+}
+
+#modalForm article{
+    padding: 1rem 1rem 0 1rem;
+    font-size: 2rem;
+}
+
+#modalForm main{
+  font-size: 1.3rem;
+}
+
+#windowBackground{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.closeAux{
+    width: 95%;
+    height: 2rem;
+}
+ 
+#close{
+    background-color: rgb(1, 60, 90);
+    color: rgb(207, 214, 237);
+    border: none;
+    padding: .3rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+ 
+#modalForm h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 1rem 0 0 0;
+    text-shadow: .3rem .3rem 2px rgba(77, 77, 255, 0.5);
+}
+ 
+.vehiclePhoto{
+  width: 60%;
+  height: 8rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5% 5%;
+  background-position: center;
+}
+ 
+.properties{
+  width: 90%;
+  margin: -1.5rem;
+  display: flex;
+}
+ 
+.property{
+  font-weight: bold;
+  width: 50%;
+}
+ 
+.properties a{
+  color: rgb(141, 138, 225);
+}
+ 
+.properties select{
+  font-size: 1rem;
+  height: 1.5rem;
+  background-color: rgb(141, 138, 225);
+}
