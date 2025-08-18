@@ -95,3 +95,20 @@ body{
     padding-top: .5rem;
     font-size: 1.2rem;
 }
+
+nav{
+    display: flex;
+    padding: 0 2rem 1.5rem;
+}
+ 
+p, select{
+  font-size: 1.2rem;
+}
+ 
+select{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 201, 234);
+    border: none;
+    margin-right: 1rem;
+}
