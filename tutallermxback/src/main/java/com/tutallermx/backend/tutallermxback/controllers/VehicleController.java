@@ -43,12 +43,12 @@ public class VehicleController {
     @GetMapping("/{id}")
     @Operation(summary = "Get vehicle by ID", description = "Retrieves a vehicle by its ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Vehicle retrieved successfully"),
-        @ApiResponse(responseCode = "404", description = "Vehicle not found")
+            @ApiResponse(responseCode = "200", description = "Vehicle retrieved successfully"),
+            @ApiResponse(responseCode = "404", description = "Vehicle not found")
     })
     public ResponseEntity<Vehicle> getVehicleById(@PathVariable Long id) {
         Vehicle vehicle = vehicleService.getVehicleById(id);
-        if(vehicle == null) {
+        if (vehicle == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(vehicle);
@@ -57,24 +57,33 @@ public class VehicleController {
     @PatchMapping("/status/{id}")
     @Operation(summary = "Update vehicle status", description = "Updates the status of a vehicle")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Vehicle status updated successfully"),
-        @ApiResponse(responseCode = "404", description = "Vehicle not found")
+            @ApiResponse(responseCode = "200", description = "Vehicle status updated successfully"),
+            @ApiResponse(responseCode = "404", description = "Vehicle not found")
     })
-    public ResponseEntity<Vehicle> patchVehicleStatus(@PathVariable Long id, @Valid @RequestBody VehicleStatusDTO statusDTO) {
-        Vehicle vehicle = vehicleService.patchVehicleStatusDto(id, statusDTO);
-        if (vehicle == null) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Vehicle> patchVehicleStatus(@PathVariable Long id,
+            @Valid @RequestBody VehicleStatusDTO statusDTO) {
+        switch (statusDTO.getStatus().trim().toLowerCase()) {
+            case "in progress", "unassigned", "done":
+                Vehicle vehicle = vehicleService.patchVehicleStatusDto(id, statusDTO);
+                if (vehicle == null) {
+                    return ResponseEntity.notFound().build();
+                } else
+                    return ResponseEntity.ok(vehicle);
+            default:
+                return ResponseEntity.badRequest().build();                
         }
-        return ResponseEntity.ok(vehicle);
+
     }
 
     @PatchMapping("/services/{id}")
     @Operation(summary = "Update vehicle services", description = "Updates the services of a vehicle")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Vehicle services updated successfully"),
-        @ApiResponse(responseCode = "404", description = "Vehicle not found")
+            @ApiResponse(responseCode = "200", description = "Vehicle services updated successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid service data"),
+            @ApiResponse(responseCode = "404", description = "Vehicle not found")
     })
-    public ResponseEntity<Vehicle> patchVehicleServices(@PathVariable Long id, @Valid @RequestBody VehicleServiceDTO serviceDTO) {
+    public ResponseEntity<Vehicle> patchVehicleServices(@PathVariable Long id,
+            @Valid @RequestBody VehicleServiceDTO serviceDTO) {
         Vehicle vehicle = vehicleService.patchVehicleServiceDto(id, serviceDTO);
         if (vehicle == null) {
             return ResponseEntity.notFound().build();
