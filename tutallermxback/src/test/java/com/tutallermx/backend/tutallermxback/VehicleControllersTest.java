@@ -1,5 +1,7 @@
 package com.tutallermx.backend.tutallermxback;
 import com.tutallermx.backend.tutallermxback.models.Vehicle;
+import com.tutallermx.backend.tutallermxback.models.VehicleServiceDTO;
+import com.tutallermx.backend.tutallermxback.models.VehicleStatusDTO;
 import com.tutallermx.backend.tutallermxback.services.VehicleService;
 
 import static org.mockito.Mockito.when;
@@ -83,5 +85,79 @@ class VehicleControllersTest {
                 .andExpect(jsonPath("$.owner").value("John Doe"))
                 .andExpect(jsonPath("$.make").value("Ford"))
                 .andExpect(jsonPath("$.model").value("Focus"));
+    }
+
+    @Test
+    void testPatchServiceCorrectly() throws Exception {
+        var originalVehicle = new Vehicle();
+        originalVehicle.setId(1L);
+        originalVehicle.setOwner("John Doe");
+        originalVehicle.setPhone(1234567890L);
+        originalVehicle.setMake("Ford");
+        originalVehicle.setModel("Focus");
+        originalVehicle.setCarYear(2021L);
+        originalVehicle.setVin("JH4TB2H26CC000002");
+        originalVehicle.setServices("Unassigned");
+
+        Long vehicleId = 1L;
+        VehicleServiceDTO serviceDto = new VehicleServiceDTO();
+        serviceDto.setService("Tire Rotation");
+
+        var updatedVehicle = new Vehicle();
+        updatedVehicle.setId(vehicleId);
+        updatedVehicle.setOwner("John Doe");
+        updatedVehicle.setPhone(1234567890L);
+        updatedVehicle.setMake("Ford");
+        updatedVehicle.setModel("Focus");
+        updatedVehicle.setCarYear(2021L);
+        updatedVehicle.setVin("JH4TB2H26CC000002");
+        updatedVehicle.setServices("Tire Rotation");   
+
+        when(vehicleService.patchVehicleServiceDto(eq(vehicleId), any(VehicleServiceDTO.class))).thenReturn(updatedVehicle);
+
+        mockMvc.perform(patch("/api/vehicles/services/{id}", vehicleId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"service\": \"Tire Rotation\"}"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(vehicleId))
+                .andExpect(jsonPath("$.services").value("Tire Rotation"));
+    }
+
+    @Test
+    void testPatchStatusCorrectly() throws Exception {
+        var originalVehicle = new Vehicle();
+        originalVehicle.setId(1L);
+        originalVehicle.setOwner("John Doe");
+        originalVehicle.setPhone(1234567890L);
+        originalVehicle.setMake("Ford");
+        originalVehicle.setModel("Focus");
+        originalVehicle.setCarYear(2021L);
+        originalVehicle.setVin("JH4TB2H26CC000002");
+        originalVehicle.setStatus("Unassigned");
+
+        Long vehicleId = 1L;
+        VehicleStatusDTO statusDto = new VehicleStatusDTO();
+        statusDto.setStatus("Available");
+
+        var updatedVehicle = new Vehicle();
+        updatedVehicle.setId(vehicleId);
+        updatedVehicle.setOwner("John Doe");
+        updatedVehicle.setPhone(1234567890L);
+        updatedVehicle.setMake("Ford");
+        updatedVehicle.setModel("Focus");
+        updatedVehicle.setCarYear(2021L);
+        updatedVehicle.setVin("JH4TB2H26CC000002");
+        updatedVehicle.setStatus("Available");
+
+        when(vehicleService.patchVehicleStatusDto(eq(vehicleId), any(VehicleStatusDTO.class))).thenReturn(updatedVehicle);
+
+        mockMvc.perform(patch("/api/vehicles/status/{id}", vehicleId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"status\": \"Available\"}"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(vehicleId))
+                .andExpect(jsonPath("$.status").value("Available"));
     }
 }
