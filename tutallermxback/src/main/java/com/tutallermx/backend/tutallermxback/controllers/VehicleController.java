@@ -2,6 +2,7 @@ package com.tutallermx.backend.tutallermxback.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.tutallermx.backend.tutallermxback.models.Vehicle;
 import com.tutallermx.backend.tutallermxback.models.VehicleServiceDTO;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/vehicles")
+@CrossOrigin(origins = "http://localhost:5173")
 @Tag(name = "Vehicle Management", description = "Operations related to vehicle management")
 public class VehicleController {
     private final VehicleService vehicleService;
@@ -62,15 +64,16 @@ public class VehicleController {
     })
     public ResponseEntity<Vehicle> patchVehicleStatus(@PathVariable Long id,
             @Valid @RequestBody VehicleStatusDTO statusDTO) {
-        switch (statusDTO.getStatus().trim().toLowerCase()) {
-            case "in progress", "unassigned", "done":
-                Vehicle vehicle = vehicleService.patchVehicleStatusDto(id, statusDTO);
-                if (vehicle == null) {
-                    return ResponseEntity.notFound().build();
-                } else
-                    return ResponseEntity.ok(vehicle);
-            default:
-                return ResponseEntity.badRequest().build();                
+        String status = statusDTO.getStatus().trim().toLowerCase();
+        if (status.equals("in progress") || status.equals("unassigned") || status.equals("done")) {
+            Vehicle vehicle = vehicleService.patchVehicleStatusDto(id, statusDTO);
+            if (vehicle == null) {
+                return ResponseEntity.notFound().build();
+            } else {
+                return ResponseEntity.ok(vehicle);
+            }
+        } else {
+            return ResponseEntity.badRequest().build();
         }
 
     }

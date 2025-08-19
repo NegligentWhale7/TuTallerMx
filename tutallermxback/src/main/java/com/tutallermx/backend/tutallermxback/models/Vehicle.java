@@ -42,8 +42,8 @@ public class Vehicle {
     @Pattern(regexp = "^[A-HJ-NPR-Z0-9]{17}$", message = "VIN must contain only valid characters (no I, O, Q)")
     private String vin;
     @Pattern(regexp = "(?i)^(?:(?![×Þß÷þø])[-'0-9a-zÀ-ÿ\\s])+$", message = "Status must not contain special characters")
-    private String status = "unassigned";
+    private String status = "Unassigned";
     @Pattern(regexp = "(?i)^(?:(?![×Þß÷þø])[-'0-9a-zÀ-ÿ\\s])+$", message = "Services must not contain special characters")
-    private String services = "unassigned";
+    private String services = "Oil change";
     private String image;
 }

@@ -1,6 +1,29 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { patchVehicleStatus } from "../api";
 
-function Window({ onClose, vehicleInfo }) {
+function Window({ onClose, vehicleInfo, onStatusChange }) {
+  const [status, setStatus] = useState(vehicleInfo.status);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleStatusChange = async (e) => {
+    const newStatus = e.target.value;
+    setStatus(newStatus);
+    setLoading(true);
+    setError(null);
+    try {
+      await patchVehicleStatus(vehicleInfo.id, newStatus);
+      setLoading(false);
+      if (onStatusChange) {
+        onStatusChange(vehicleInfo.id, newStatus);
+      }
+    } catch (err) {
+      setError("Failed to update status");
+      setLoading(false);
+    }
+  };
+
   return (
     <div id="modalForm">
       <article>
@@ -9,9 +32,8 @@ function Window({ onClose, vehicleInfo }) {
           <button id="close" onClick={onClose}>
             X
           </button>{" "}
-          {/* Boton para cerrar el formulario */}
         </div>
-        <h1>Vehicle information</h1> {/* Titulo del formulario */}
+        <h1>Vehicle information</h1>
       </article>
       <main className="windowMain">
         <div
@@ -48,11 +70,13 @@ function Window({ onClose, vehicleInfo }) {
 
         <div className="properties">
           <div className="property">Status: </div>
-          <select name="status" id="status">
+          <select name="status" id="status" value={status} onChange={handleStatusChange} disabled={loading}>
             <option value="Unassigned">Unassigned</option>
             <option value="In progress">In progress</option>
             <option value="Done">Done</option>
           </select>
+          {loading && <span>Updating...</span>}
+          {error && <span style={{color: 'red'}}>{error}</span>}
         </div>
       </main>
     </div>
@@ -62,6 +86,7 @@ function Window({ onClose, vehicleInfo }) {
 Window.propTypes = {
   onClose: PropTypes.func,
   vehicleInfo: PropTypes.object,
+  onStatusChange: PropTypes.func,
 };
 
 export default Window;

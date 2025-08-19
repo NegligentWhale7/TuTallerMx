@@ -42,17 +42,22 @@ public class VehicleService {
     }
 
     public Vehicle patchVehicleStatusDto(Long id, VehicleStatusDTO vehicleDto) {
-        System.out.println("Updating vehicle " + id + " with status: " + vehicleDto.getStatus());
         Vehicle existingVehicle = getVehicleById(id);
-        if (existingVehicle != null) {
-            System.out.println("Vehicle found: " + existingVehicle.getStatus() + " -> " + vehicleDto.getStatus());
-            existingVehicle.setStatus(vehicleDto.getStatus());
-            Vehicle savedVehicle = vehicleRepository.save(existingVehicle);
-            System.out.println("Vehicle saved with status: " + savedVehicle.getStatus());
-            return savedVehicle;
+        if (existingVehicle == null) {
+            System.err.println("Vehicle not found with id: " + id);
+            return null;
         }
-        System.out.println("Vehicle not found with id: " + id);
-        return null;
+        try {
+            existingVehicle.setStatus(vehicleDto.getStatus());
+            // Only status is updated, other fields remain unchanged
+            Vehicle saved = vehicleRepository.save(existingVehicle);
+            System.out.println("Vehicle status updated successfully for id " + id + ": " + vehicleDto.getStatus());
+            return saved;
+        } catch (Exception e) {
+            System.err.println("Error updating vehicle status for id " + id + ": " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public Vehicle patchVehicleServiceDto(Long id, VehicleServiceDTO vehicleDto) {

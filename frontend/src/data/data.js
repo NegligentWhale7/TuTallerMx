@@ -1,7 +1,7 @@
 /**
  * @typedef {Object} Vehicle
  * @property {number} id - Unique identifier for the vehicle
- * @property {string} name - Name of the vehicles owner
+ * @property {string} owner - Name of the vehicles owner
  * @property {number} phone - Phone number of the vehicles owner
  * @property {"Toyota"|"Honda"|"Ford"|"Chevrolet"|"Nissan"|"Volkswagen"|"BMW"|"Mercedes-Benz"|"Audi"|"Hyundai"|"Kia"
  *  |"Mazda"|"Subaru"|"Jeep"|"Tesla"|"Volvo"|"Peugeot"|"Renault"|"Fiat"|"Lexus"} make - Vehicle make
@@ -9,13 +9,13 @@
  *  |"Outback"|"Wrangler"|"Model 3"|"XC60"|"208"|"Clio"|"500"|"RX"} model - Vehicle model
  * @property {"1990"|"1991"|"1992"|"1993"|"1994"|"1995"|"1996"|"1997"|"1998"|"1999"|"2000"|"2001"|"2002"|"2003"|"2004"
  *  |"2005"|"2006"|"2007"|"2008"|"2009"|"2010"|"2011"|"2012"|"2013"|"2014"|"2015"|"2016"|"2017"|"2018"|"2019"|"2020"
- *  |"2021"|"2022"|"2023"|"2024"|"2025"} vehicleYear - Vehicle year
+ *  |"2021"|"2022"|"2023"|"2024"|"2025"} carYear - Vehicle year
  * @property {string} vin - Vehicle vin
  * @property {string} image - Vehicle image
  * @property {"Oil change"|"Brake inspection"|"Wheel alignment"|"Tire replacement"|"Battery check"|"Exterior wash"
  *  |"Interior vacuuming"|"Air filter replacement"|"Oil filter replacement"|"Light inspection"|"Fluid level check"
  *  |"Tire rotation"|"Exhaust system check"|"Suspension check"|"Steering system check"|"AC recharge"|"Belt inspection"
- *  |"Spark plug check"|"Windshield inspection"|"Wiper blade check"} service - Service type
+ *  |"Spark plug check"|"Windshield inspection"|"Wiper blade check"} services - Service type
  * @property {"Unassigned"|"In progress"|"Completed"} status - Status of the vehicle service
  */
 
@@ -26,14 +26,14 @@
 const mockVehicles = [
     {
     "id": 1,
-    "name": "Alice",
+    "owner": "Alice",
     "phone": 9838289499,
     "make": "Toyota",
     "model": "Corolla",
-    "vehicleYear": "2003",
+    "carYear": "2003",
     "vin": "VIN00001",
     "image": "././public/images/ToyotaCorolla.jpg",
-    "service": "Oil change",
+    "services": "Oil change",
     "status": "Unassigned"
   },
   {
