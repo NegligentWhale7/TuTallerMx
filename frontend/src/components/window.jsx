@@ -13,6 +13,12 @@ function Window({onClose, vehicleInfo}) {
 </article>
 <main className="windowMain">
 <div className="vehiclePhoto" style={{ backgroundImage: `url(${vehicleInfo.image})` }}></div>
+<div className="properties">    
+    <div className="property">Contact owner: </div> 
+    <a href={"https://api.whatsapp.com/send?phone=" + vehicleInfo.phone 
+     + "&text=Hey! I would like to schedule an appointment for your car service"} 
+    className="value owner">{vehicleInfo.name}</a>
+</div>
 <div className="properties">
 <div className="property">Vehicle: </div> 
 <div className="value">{vehicleInfo.vehicleYear} {vehicleInfo.make} {vehicleInfo.model}</div>
