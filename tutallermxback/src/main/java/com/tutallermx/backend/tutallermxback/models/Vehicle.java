@@ -45,4 +45,5 @@ public class Vehicle {
     private String status = "unassigned";
     @Pattern(regexp = "(?i)^(?:(?![×Þß÷þø])[-'0-9a-zÀ-ÿ\\s])+$", message = "Services must not contain special characters")
     private String services = "unassigned";
+    private String image;
 }

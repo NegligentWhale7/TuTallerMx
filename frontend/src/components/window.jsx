@@ -28,13 +28,13 @@ function Window({ onClose, vehicleInfo }) {
             }
             className="value owner"
           >
-            {vehicleInfo.name}
+            {vehicleInfo.owner}
           </a>
         </div>
         <div className="properties">
           <div className="property">Vehicle: </div>
           <div className="value">
-            {vehicleInfo.vehicleYear} {vehicleInfo.make} {vehicleInfo.model}
+            {vehicleInfo.carYear} {vehicleInfo.make} {vehicleInfo.model}
           </div>
         </div>
         <div className="properties">
@@ -43,7 +43,7 @@ function Window({ onClose, vehicleInfo }) {
         </div>
         <div className="properties">
           <div className="property">Service required: </div>
-          <div className="value">{vehicleInfo.service}</div>
+          <div className="value">{vehicleInfo.services}</div>
         </div>
 
         <div className="properties">

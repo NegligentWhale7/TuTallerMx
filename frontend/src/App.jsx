@@ -22,7 +22,7 @@ function App() {
         setServiceFilter={setServiceFilter} statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
       <main>
         {vehicles.filter(vehicle => Vehicle.status !== "Done" && (makeFilter === "" || vehicle.make === makeFilter)
-          && (serviceFilter === "" || vehicle.service === serviceFilter)
+          && (serviceFilter === "" || vehicle.services === serviceFilter)
           && (statusFilter === "" || vehicle.status === statusFilter)).map(vehicle => <Vehicle onAddVehicle={() => {
             setShowForm(true);
             setSelectedVehicle(vehicle);

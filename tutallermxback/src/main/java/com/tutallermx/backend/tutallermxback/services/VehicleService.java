@@ -25,7 +25,7 @@ public class VehicleService {
         return vehicleRepository.findById(id).orElse(null);
     }
 
-        public Vehicle patchVehicle(Long id, Vehicle vehicle) {
+    public Vehicle patchVehicle(Long id, Vehicle vehicle) {
         Vehicle existingVehicle = getVehicleById(id);
         if (existingVehicle != null) {
             existingVehicle.setOwner(vehicle.getOwner());

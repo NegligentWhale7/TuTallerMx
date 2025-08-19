@@ -9,7 +9,7 @@ function Vehicle({vehicleInfo, onAddVehicle}) {
                 <button className='vehicleImg' onClick={onAddVehicle} style={{ backgroundImage: `url(${vehicleInfo.image})` }}></button>
             </div>
             <div className='vehicleInfo'>{vehicleInfo.make} {vehicleInfo.model}</div>
-            <div className='vehicleService'>{vehicleInfo.service}</div>
+            <div className='vehicleService'>{vehicleInfo.services}</div>
         </div>
     )
 }  
