@@ -61,4 +61,27 @@ class VehicleControllersTest {
                 .andExpect(jsonPath("$[1].owner").value("Maria Garcia"))
                 .andExpect(jsonPath("$[1].make").value("Honda"));
     }
+
+    @Test
+    void testReturnsCorrectVehicleDetails() throws Exception {
+        Long vehicleId = 1L;
+        var vehicle = new Vehicle();
+        vehicle.setId(vehicleId);
+        vehicle.setOwner("John Doe");
+        vehicle.setPhone(1234567890L);
+        vehicle.setMake("Ford");
+        vehicle.setModel("Focus");
+        vehicle.setCarYear(2021L);
+        vehicle.setVin("JH4TB2H26CC000002");
+ 
+        when(vehicleService.getVehicleById(vehicleId)).thenReturn(vehicle);
+ 
+        mockMvc.perform(get("/api/vehicles/{id}", vehicleId))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(vehicleId))
+                .andExpect(jsonPath("$.owner").value("John Doe"))
+                .andExpect(jsonPath("$.make").value("Ford"))
+                .andExpect(jsonPath("$.model").value("Focus"));
+    }
 }
